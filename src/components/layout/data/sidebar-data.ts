@@ -1,111 +1,68 @@
 import {
-  Construction,
-  LayoutDashboard,
-  Monitor,
-  Bug,
+  Inbox,
+  CalendarDays,
+  FolderOpen,
+  Tags,
+  CheckCircle2,
+  Flag,
+  Activity,
   ListTodo,
-  FileX,
-  HelpCircle,
-  Lock,
-  Bell,
-  Package,
-  Palette,
-  ServerOff,
   Settings,
-  Wrench,
-  UserCog,
-  UserX,
-  Users,
-  MessagesSquare,
-  AudioWaveform,
-  Command,
-  GalleryVerticalEnd,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   teams: [
     {
-      name: 'Shadcn Admin',
-      logo: Command,
-      plan: 'Vite + ShadcnUI',
-    },
-    {
-      name: 'Acme Inc',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Acme Corp.',
-      logo: AudioWaveform,
-      plan: 'Startup',
+      name: 'OmniFocus Clone',
+      logo: CheckCircle2,
+      plan: 'Personal',
     },
   ],
   navGroups: [
     {
-      title: 'General',
+      title: 'Views',
       items: [
         {
-          title: 'Dashboard',
+          title: 'Inbox',
           url: '/',
-          icon: LayoutDashboard,
+          icon: Inbox,
+          badge: '12',
         },
         {
-          title: 'Tasks',
-          url: '/tasks',
-          icon: ListTodo,
+          title: 'Forecast',
+          url: '/forecast',
+          icon: CalendarDays,
         },
         {
-          title: 'Apps',
-          url: '/apps',
-          icon: Package,
+          title: 'Projects',
+          url: '/projects',
+          icon: FolderOpen,
         },
         {
-          title: 'Chats',
-          url: '/chats',
-          badge: '3',
-          icon: MessagesSquare,
+          title: 'Tags',
+          url: '/tags',
+          icon: Tags,
         },
         {
-          title: 'Users',
-          url: '/users',
-          icon: Users,
+          title: 'Review',
+          url: '/review',
+          icon: Activity,
         },
       ],
     },
     {
-      title: 'Pages',
+      title: 'Perspectives',
       items: [
         {
-          title: 'Errors',
-          icon: Bug,
-          items: [
-            {
-              title: 'Unauthorized',
-              url: '/errors/unauthorized',
-              icon: Lock,
-            },
-            {
-              title: 'Forbidden',
-              url: '/errors/forbidden',
-              icon: UserX,
-            },
-            {
-              title: 'Not Found',
-              url: '/errors/not-found',
-              icon: FileX,
-            },
-            {
-              title: 'Internal Server Error',
-              url: '/errors/internal-server-error',
-              icon: ServerOff,
-            },
-            {
-              title: 'Maintenance Error',
-              url: '/errors/maintenance-error',
-              icon: Construction,
-            },
-          ],
+          title: 'Flagged',
+          url: '/flagged',
+          icon: Flag,
+        },
+        {
+          title: 'Available',
+          url: '/available',
+          icon: ListTodo,
         },
       ],
     },
@@ -114,39 +71,8 @@ export const sidebarData: SidebarData = {
       items: [
         {
           title: 'Settings',
+          url: '/settings',
           icon: Settings,
-          items: [
-            {
-              title: 'Profile',
-              url: '/settings',
-              icon: UserCog,
-            },
-            {
-              title: 'Account',
-              url: '/settings/account',
-              icon: Wrench,
-            },
-            {
-              title: 'Appearance',
-              url: '/settings/appearance',
-              icon: Palette,
-            },
-            {
-              title: 'Notifications',
-              url: '/settings/notifications',
-              icon: Bell,
-            },
-            {
-              title: 'Display',
-              url: '/settings/display',
-              icon: Monitor,
-            },
-          ],
-        },
-        {
-          title: 'Help Center',
-          url: '/help-center',
-          icon: HelpCircle,
         },
       ],
     },
