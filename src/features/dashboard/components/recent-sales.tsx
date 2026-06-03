@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 export function RecentSales() {
+  // TODO: Replace hardcoded data with real API data
   return (
     <div className='space-y-8'>
       <div className='flex items-center gap-4'>

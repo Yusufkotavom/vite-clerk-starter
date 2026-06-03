@@ -1,119 +1,103 @@
-# Shadcn Admin Dashboard
+# Vite + Clerk Starter
 
-Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
-
-![alt text](public/images/shadcn-admin.png)
-
-[![Sponsored by Clerk](https://img.shields.io/badge/Sponsored%20by-Clerk-5b6ee1?logo=clerk)](https://go.clerk.com/GttUAaK)
-
-I've been creating dashboard UIs at work and for my personal projects. I always wanted to make a reusable collection of dashboard UI for future projects; and here it is now. While I've created a few custom components, some of the code is directly adapted from ShadcnUI examples.
-
-> This is not a starter project (template) though. I'll probably make one in the future.
-
-## Features
-
-- Light/dark mode
-- Responsive
-- Accessible
-- With built-in Sidebar component
-- Global search command
-- 10+ pages
-- Extra custom components
-- RTL support
-
-<details>
-<summary>Customized Components (click to expand)</summary>
-
-This project uses Shadcn UI components, but some have been slightly modified for better RTL (Right-to-Left) support and other improvements. These customized components differ from the original Shadcn UI versions.
-
-If you want to update components using the Shadcn CLI (e.g., `npx shadcn@latest add <component>`), it's generally safe for non-customized components. For the listed customized ones, you may need to manually merge changes to preserve the project's modifications and avoid overwriting RTL support or other updates.
-
-> If you don't require RTL support, you can safely update the 'RTL Updated Components' via the Shadcn CLI, as these changes are primarily for RTL compatibility. The 'Modified Components' may have other customizations to consider.
-
-### Modified Components
-
-- scroll-area
-- sonner
-- separator
-
-### RTL Updated Components
-
-- alert-dialog
-- calendar
-- command
-- dialog
-- dropdown-menu
-- select
-- table
-- sheet
-- sidebar
-- switch
-
-**Notes:**
-
-- **Modified Components**: These have general updates, potentially including RTL adjustments.
-- **RTL Updated Components**: These have specific changes for RTL language support (e.g., layout, positioning).
-- For implementation details, check the source files in `src/components/ui/`.
-- All other Shadcn UI components in the project are standard and can be safely updated via the CLI.
-
-</details>
+Admin Dashboard starter template built with Vite, React, shadcn/ui, and Clerk authentication.
 
 ## Tech Stack
 
-**UI:** [ShadcnUI](https://ui.shadcn.com) (TailwindCSS + RadixUI)
+- **Frontend:** [Vite](https://vitejs.dev/) + [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **UI:** [shadcn/ui](https://ui.shadcn.com) (TailwindCSS + RadixUI)
+- **Auth:** [Clerk](https://clerk.com)
+- **Routing:** [TanStack Router](https://tanstack.com/router)
+- **Data Fetching:** [TanStack Query](https://tanstack.com/query)
+- **API:** [Hono](https://hono.dev/) (Vercel Edge Functions)
+- **Database:** [Neon PostgreSQL](https://neon.tech/) + [Drizzle ORM](https://orm.drizzle.team/)
 
-**Build Tool:** [Vite](https://vitejs.dev/)
+## Features
 
-**Routing:** [TanStack Router](https://tanstack.com/router/latest)
+- Clerk authentication (sign-in, sign-up, sign-out)
+- Protected routes with auth guard
+- User profile from Clerk session (sidebar + header)
+- Light/dark mode
+- Responsive layout with sidebar
+- RTL support
+- Global search command
+- 10+ demo pages
 
-**Type Checking:** [TypeScript](https://www.typescriptlang.org/)
+## Getting Started
 
-**Linting/Formatting:** [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/)
-
-**Icons:** [Lucide Icons](https://lucide.dev/icons/), [Tabler Icons](https://tabler.io/icons) (Brand icons only)
-
-**Auth (partial):** [Clerk](https://go.clerk.com/GttUAaK)
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/satnaing/shadcn-admin.git
-```
-
-Go to the project directory
-
-```bash
-  cd shadcn-admin
-```
-
-Install dependencies
+### 1. Clone
 
 ```bash
-  pnpm install
+git clone https://github.com/Yusufkotavom/vite-clerk-starter.git
+cd vite-clerk-starter
+pnpm install
 ```
 
-Start the server
+### 2. Setup Environment
 
 ```bash
-  pnpm run dev
+cp .env.example .env.local
 ```
 
-## Sponsoring this project ❤️
+Fill in your keys in `.env.local`:
 
-If you find this project helpful or use this in your own work, consider [sponsoring me](https://github.com/sponsors/satnaing) to support development and maintenance. You can [buy me a coffee](https://buymeacoffee.com/satnaing) as well. Don’t worry, every penny helps. Thank you! 🙏
+```env
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+DATABASE_URL=postgresql://...
+```
 
-For questions or sponsorship inquiries, feel free to reach out at [satnaingdev@gmail.com](mailto:satnaingdev@gmail.com).
+Get your Clerk keys from [Clerk Dashboard](https://dashboard.clerk.com) → API Keys.
 
-### Current Sponsor
+### 3. Clerk Dashboard Setup
 
-- [Clerk](https://go.clerk.com/GttUAaK) - authentication and user management for the modern web
+In your Clerk Dashboard → Configure → Paths:
 
-## Author
+- **Sign-in URL:** `/sign-in`
+- **Sign-up URL:** `/sign-up`
+- **After sign-in URL:** `/`
+- **After sign-up URL:** `/`
 
-Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
+### 4. Run
+
+```bash
+pnpm run dev
+```
+
+Open `http://localhost:5173`
+
+## Project Structure
+
+```
+├── api/                  # Hono API (Vercel Edge Functions)
+│   ├── db.ts             # Database connection (server-only)
+│   └── index.ts          # API routes
+├── src/
+│   ├── components/       # UI components (shadcn + custom)
+│   ├── context/          # React context providers
+│   ├── db/               # Database schema (Drizzle)
+│   ├── features/         # Feature modules (dashboard, tasks, users, etc.)
+│   ├── hooks/            # Custom hooks
+│   ├── lib/              # Utilities
+│   ├── routes/           # TanStack Router file-based routes
+│   │   ├── (auth)/       # Sign-in, sign-up (Clerk components)
+│   │   ├── (errors)/     # Error pages (401, 403, 404, 500, 503)
+│   │   └── _authenticated/ # Protected routes (dashboard, settings, etc.)
+│   └── main.tsx          # App entry point (ClerkProvider wraps everything)
+└── .env.example          # Environment variables template
+```
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start dev server |
+| `pnpm build` | Type check + production build |
+| `pnpm lint` | Run ESLint |
+| `pnpm format` | Format with Prettier |
+| `pnpm test` | Run tests |
+| `pnpm knip` | Detect unused code |
 
 ## License
 
-Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
+[MIT](https://choosealicense.com/licenses/mit/)

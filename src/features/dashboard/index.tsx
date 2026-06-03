@@ -76,6 +76,7 @@ export function Dashboard() {
                   </svg>
                 </CardHeader>
                 <CardContent>
+                  {/* TODO: Replace with real data from API */}
                   <div className='text-2xl font-bold'>$45,231.89</div>
                   <p className='text-xs text-muted-foreground'>
                     +20.1% from last month

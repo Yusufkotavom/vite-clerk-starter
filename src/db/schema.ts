@@ -2,11 +2,11 @@ import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
+  clerkId: text('clerk_id').unique(),
   firstName: text('first_name'),
   lastName: text('last_name'),
   username: text('username').notNull().unique(),
   email: text('email').notNull().unique(),
-  password: text('password').notNull(), // In production, this should be hashed
   phoneNumber: text('phone_number'),
   status: text('status').default('active'),
   role: text('role').default('user'),
